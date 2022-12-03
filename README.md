@@ -1,82 +1,48 @@
-# Snowpack Tailwind
+# Practica JS + Localstorange
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+## Objetivo
+Los siguientes ejercicios tienen como objetivo practicar el pensamiento lógico en
+javascript para resolver problemas, valiéndonos del uso de HTML, CSS, la
+manipulación del DOM mediante javaScript y la persistencia de datos en el
+localStorage. Para la resolución de estos ejercicios dejamos unos diseños que
+pueden servir de guía pero no son requerimiento, pudiendo implementar los
+estilos que consideren. Recomendamos utilizar bootstrap o alguna librería de
+estilos de su preferencia para facilitarles el maquetado ya que no es el objetivo
+de estas prácticas. Luego, los ejercicios resueltos los pueden subir a un
+repositorio y enviar a molea@mobydigital.com y fmorel@mobydigital.com
+## Enunciado
+Se debe crear un formulario de login, el cual debe validar tanto el mail como la contraseña. 
+Al no contar con un backend y base de datos vamos a simularlo reemplazandolos por el localStorage, debemos también poder generar un
+usuario y poder loguearnos con el mismo. Se debe tener en cuenta:
+- Validadores de inputs en el formulario.
+- Mensajes de error intuitivos.
+- Cuando el usuario se loguee correctamente redireccionar a una
+vista de bienvenida en la cual se muestre el nombre de usuario.
+- El usuario tiene que poder crearse una cuenta.
 
-Ready-to-go template to create awesome websites using Tailwind on top of Snowpack and autopublish to GitHub pages using GitHub Actions.
+## Referencias
+![image](https://user-images.githubusercontent.com/17836921/205442433-69404253-4e1d-40cc-b671-f852eb431b1c.png)
+![image](https://user-images.githubusercontent.com/17836921/205442480-50ec8abd-786a-499f-9eaf-7b5b31fb7985.png)
 
-- [Quick start](#quick-start)
-- [Features](#features)
-- [Available Scripts](#available-scripts)
+## Adicional
+Para este ejercicio vamos a mockear los datos de login en el localStorage, es
+decir, crear un array de usuarios que contenga al menos 3 objetos “user” con una
+estructura similar a la siguiente:
 
-## Quick start
+  ![image](https://user-images.githubusercontent.com/17836921/205442534-d40fa29c-24ef-4fac-af21-6a63d1e6e26e.png)
 
-```sh
-# Bootstrap the template into a new folder called `my-app`
-npx create-snowpack-app my-app --template snowpack-template-tailwind
+Los cuales debemos en primera instancia guardar en localStorage del navegador
+y después leer al momento de intentar loguearse para validar si los datos son
+correctos.
+Si la validación es correcta, debemos guardar en otra variable del localStorage el
+nombre y username del usuario logueado que luego debemos leer desde la vista
+de bienvenida donde lo saludamos con su nombre. Desde esta vista debe haber
+un botón para cerrar sesión qué debe borrar los datos del del usuario logueado
+del localStorage .
+Al momento de registrar un nuevo usuario se debe agregar el nuevo usuario al
+array de usuarios mockeados y debe persistir para poder loguearse con ese
+usuario después de recargar la página
+Notas: Los diseños son orientativos. IMPORTANTE! Guardar información sensible en
+el localStorage es una mala práctica y algo que debe evitarse siempre.
 
-# Enable Prettier on git-commit
-cd my-app
-npm run install:husky
-
-# Start the development server
-npm start
-```
-
-✨ Optional: [Enable autopublish](#q-how-do-i-enable-auto-publish-to-github-pages) to get your site deployed on GitHub Pages on every commit you push.
-
-#### Optional install using Yarn:
-
-```sh
-# Bootstrap the template into a new folder called `my-app`
-npx create-snowpack-app my-app --template snowpack-template-tailwind --use-yarn
-
-# Enable Prettier on git-commit
-cd my-app
-yarn install:husky
-```
-
-## Features
-
-- Snowpack, of course.
-- Tailwind.
-- Prettier.
-- Force prettier on git-commit.
-- Autopublish on Github Pages.
-
-### Q: How do I enable auto publish to GitHub Pages?
-
-1. Update the value of `homepage` in `package.json`. It should look like `https://<your-username>.github.io/<your-repo-name>` (no trailing slash).
-1. Push your changes into a new GitHub repository.
-1. You should see an Action running on `https://github.com/<your-username>/<repo-name>/actions`
-1. Make sure to [enable GitHub pages for your repo](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source) and select the `gh-pages` branch
-1. Give GH Pages some minutes, your site should be live on `https://<your-username>.github.io/<your-repo-name>`
-1. Enjoy :)
-
-### Q: How do I disable auto publish to GitHub Pages?
-
-Remove the `.github/workflows/publish.yml` file.
-
-### Q: How do I check my code syntax (Prettier) on git-commit?
-
-Run `npm run install:husky`.
-
-## Available Scripts
-
-### npm start
-
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
-
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-
-### npm run build
-
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
-
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/master/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.json` config file.
-
-### Q: What about Eject?
-
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+### Template used by jonalvarezz  https://github.com/jonalvarezz/snowpack-template-tailwind
