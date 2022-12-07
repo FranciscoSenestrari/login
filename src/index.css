@@ -2,7 +2,25 @@
 @import "tailwindcss/dist/components.css";
 @import "tailwindcss/dist/utilities.css";
 
-.wrapper{
-
-    background-color: hsl(35, 81%, 96%);
+* {
+  margin: 0;
+  padding: 0;
+}
+.img-lore {
+  width: 20vw;
+  height: 35vh;
+  background-color: black;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 36.4vw;
+  height: 76vh;
+  margin-top: 4%;
+}
+input {
+  width: 27.83vw;
+  display: block;
 }

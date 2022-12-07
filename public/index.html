@@ -14,53 +14,44 @@
       type="text/css"
       href="%PUBLIC_URL%/_dist_/index.css"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Login Page</title>
   </head>
   <body>
     <main>
       <section>
         <!--py-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8-->
-        <div class="flex h-screen justify-center items-center">
-          <div
-            class="
-              shadow-lg
-              wrapper
-              w-4/12
-              h-3/4
-              flex
-              justify-center
-              items-center
-            "
-          >
+        <div class="flex h-screen justify-center">
+          <div class="shadow-lg wrapper border-2 rounded-lg">
             <div class="box-header">
-              <h1>Wellcome</h1>
+              <div class="img-lore" alt=""></div>
             </div>
             <div class="box-body">
               <form action="">
-                <p>Log in</p>
+                <h1 class="text-xl font-semibold">Login</h1>
                 <input
                   type="email"
-                  class="border-gray-500 border-2 rounded-sm"
+                  class="border-gray-500 mt-1 rounded-[2px] p-1 border-2"
                   placeholder="example@example.com"
                 />
                 <input
                   type="password"
-                  class="border-gray-500 border-2 rounded-sm"
+                  class="border-gray-500 mt-1 p-1 border-2 rounded-[2px]"
                   name=""
                   id=""
                   placeholder="*******"
                 />
                 <a href="">Froget password?</a>
-                <input type="submit" value="Log in" />
+                <input
+                  class="bg-[#7cc094] border-gray-500 h-10 rounded-lg py-3"
+                  type="submit"
+                  value="Log in"
+                />
               </form>
               <p>You have account ?</p>
               <button>Register</button>
-
-              <param name="" value="">
-
-
             </div>
-            <div class="box-footer"></div>
           </div>
         </div>
       </section>
