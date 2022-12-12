@@ -21,15 +21,19 @@
   <body>
     <main>
       <section>
-        <!--py-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8-->
-        <div class="flex h-screen justify-center">
+        <div class="flex h-screen justify-evenly">
           <div class="shadow-lg wrapper border-2 rounded-lg">
             <div class="box-header">
-              <div class="img-lore" alt=""></div>
+              <img
+                class="img-lore"
+                src="%PUBLIC_URL%/_dist_/meditate.png"
+                alt=""
+              />
+              <p class="text-[0.5rem]">Illustration by Liam Moore</p>
             </div>
             <div class="box-body">
               <form action="">
-                <h1 class="text-xl font-semibold">Login</h1>
+                <h1 class="title text-xl font-semibold">Login</h1>
                 <input
                   type="email"
                   class="border-gray-500 mt-1 rounded-[2px] p-1 border-2"
@@ -42,15 +46,17 @@
                   id=""
                   placeholder="*******"
                 />
-                <a href="">Froget password?</a>
+                <a class="flex justify-end my-2" href="">Froget password?</a>
                 <input
-                  class="bg-[#7cc094] border-gray-500 h-10 rounded-lg py-3"
+                  class=" btn-login bg-[#7cc094] border-gray-500 h-10 rounded-lg"
                   type="submit"
                   value="Log in"
                 />
               </form>
-              <p>You have account ?</p>
-              <button>Register</button>
+              <div class="flex mt-2 justify-end">
+                <p class="reg-text">You have account?</p>
+                <button class=" register font-medium">Register</button>
+              </div>
             </div>
           </div>
         </div>
