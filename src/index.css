@@ -18,7 +18,7 @@
   align-items: center;
   width: 36.4vw;
   height: 80vh;
-  margin-top: 4%;
+  margin-top: 0.5%;
   transition: height 2s, marginTop 2s;
 }
 .btn {
