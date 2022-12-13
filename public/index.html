@@ -32,30 +32,34 @@
               <p class="text-[0.5rem]">Illustration by Liam Moore</p>
             </div>
             <div class="box-body">
-              <form action="">
-                <h1 class="title text-xl font-semibold">Login</h1>
+              <h1 class="title text-xl font-semibold">Login</h1>
+              <form id="form" action="">
+                <div class="input-group">
+                  <input
+                    type="email"
+                    class="border-gray-500 mt-1 rounded-[2px] p-1 border-2"
+                    placeholder="example@example.com"
+                    required
+                  />
+                  <input
+                    type="password"
+                    class="border-gray-500 mt-1 p-1 border-2 rounded-[2px]"
+                    name=""
+                    id=""
+                    placeholder="*******"
+                    required
+                  />
+                  <a class="flex justify-end my-2" href="">Froget password?</a>
+                </div>
                 <input
-                  type="email"
-                  class="border-gray-500 mt-1 rounded-[2px] p-1 border-2"
-                  placeholder="example@example.com"
-                />
-                <input
-                  type="password"
-                  class="border-gray-500 mt-1 p-1 border-2 rounded-[2px]"
-                  name=""
-                  id=""
-                  placeholder="*******"
-                />
-                <a class="flex justify-end my-2" href="">Froget password?</a>
-                <input
-                  class=" btn-login bg-[#7cc094] border-gray-500 h-10 rounded-lg"
+                  class="btn-LR bg-[#7cc094] border-gray-500 h-10 rounded-lg"
                   type="submit"
                   value="Log in"
                 />
               </form>
               <div class="flex mt-2 justify-end">
                 <p class="reg-text">You have account?</p>
-                <button class=" register font-medium">Register</button>
+                <button class="register font-medium">Register</button>
               </div>
             </div>
           </div>
