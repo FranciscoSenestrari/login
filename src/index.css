@@ -10,7 +10,9 @@
   width: 20vw;
   height: 35vh;
 }
-
+.inp {
+ 
+}
 .wrapper {
   display: flex;
   flex-direction: column;

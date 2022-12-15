@@ -3,7 +3,7 @@
 
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyCG_eZ6vxvWQS2WmI0UgWaxDGcvbf_T3Bg",
+  apiKey: "",
   authDomain: "login-example-4f5c6.firebaseapp.com",
   projectId: "login-example-4f5c6",
   storageBucket: "login-example-4f5c6.appspot.com",
