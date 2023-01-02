@@ -213,11 +213,17 @@ const renderwellcome = (user) => {
   labelLast.textContent = user.lastname;
   labelEmail.textContent = user.email;
   btnQuit.textContent = "Logout";
+  
+  inputGroup.appendChild(labelName);
+  inputGroup.appendChild(labelEmail);
+  inputGroup.appendChild(labelLast);
+  inputGroup.appendChild(btnQuit);
+
   btnQuit.addEventListener("click", renderLogin);
 };
 const updateLocalStorange = () => {
   window.localStorage.setItem("users", JSON.stringify(listUsers));
 };
 isEmpy();
-btn.addEventListener("click", login);
+btn.addEventListener("submit", login);
 buttonRegister.addEventListener("click", renderRegister);
