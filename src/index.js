@@ -9,7 +9,7 @@ const title = document.querySelector(".title");
 const img = document.querySelector(".img-lore");
 const btn = document.querySelector(".btn-LR");
 const regText = document.querySelector(".reg-text");
-const form = document.querySelector(".form");
+const form = document.querySelector("#form");
 const inputGroup = document.querySelector(".input-group");
 const bodyBox = document.querySelector(".box-body");
 
@@ -21,7 +21,7 @@ const inputName = document.createElement("input");
 const inputLastName = document.createElement("input");
 const div = document.createElement("div");
 const twClasses = "border-gray-500 rounded-[2px] p-1 border-[1.5px] m-1";
-let listUsers;
+let listUsers = [];
 let users = [
   {
     userId: 1,
@@ -48,6 +48,7 @@ let users = [
     lastname: "Salas",
   },
 ];
+listUsers = JSON.parse(localStorage.getItem("users"));
 const isEmpy = () => {
   if (!localStorage["users"]) {
     localStorage.setItem("users", JSON.stringify(users));
@@ -68,6 +69,9 @@ const renderRegister = () => {
     buttonRegister.textContent = "Log in";
     buttonRegister.removeEventListener("click", renderRegister);
     buttonRegister.addEventListener("click", renderLogin);
+    btn.removeEventListener("click", login);
+    btn.addEventListener("click", register);
+
     img.src = "/_dist_/pc-man.png";
 
     div.className = " flex-auto flex-row";
@@ -75,6 +79,9 @@ const renderRegister = () => {
   }, 1000);
 };
 const renderLogin = () => {
+  const forgetLink = document.createElement("a");
+  forgetLink.className = "flex justify-end my-2";
+  forgetLink.textContent = "Froget password?";
   animate();
   setTimeout(function () {
     clean();
@@ -88,6 +95,9 @@ const renderLogin = () => {
     buttonRegister.addEventListener("click", renderRegister);
     inputGroup.appendChild(inputEmail);
     inputGroup.appendChild(inputPassword);
+    inputGroup.appendChild(forgetLink);
+    btn.removeEventListener("click", register);
+    btn.addEventListener("click", login);
   }, 1000);
 };
 const animate = () => {
@@ -109,10 +119,45 @@ const animate = () => {
   );
 };
 const login = () => {
-  const found = listUsers.find((user) => user.id == id);
+  if (listUsers.find((user) => user.email == inputEmail.value)) {
+    if (
+      listUsers.find(
+        (user) =>
+          user.email == inputEmail.value && user.password == inputPassword.value
+      )
+    ) {
+      let user = listUsers.filter(function (user) {
+        return user.email == inputEmail.value;
+      });
+
+      alert("Wellcome" + user.name);
+      clean();
+      renderwellcome(user);
+    }
+  }
 };
-const register = () => {};
-const search = () => {};
+const register = () => {
+  if (inputEmail.value !== inputReEmail.value) {
+    inputReEmail.style.borderColor = "red";
+    inputReEmail.title = "Does not match";
+  }
+  if (inputPassword.value !== inputRePassword.value) {
+    inputRePassword.style.borderColor = "red";
+    inputRePassword.title = "Does not match";
+  }
+  let user = {
+    userId: Math.random().toString(16).slice(2),
+    username: inputName.value,
+    email: inputEmail.value,
+    password: inputPassword.value,
+    name: inputName.value,
+    lastname: inputLastName.value,
+  };
+  listUsers.push(user);
+  updateLocalStorange();
+  window.alert("create user sussefull");
+  renderLogin();
+};
 const createInputs = () => {
   inputEmail.className = twClasses;
   inputEmail.required = true;
@@ -130,18 +175,22 @@ const createInputs = () => {
 
   inputRePassword.className = twClasses;
   inputRePassword.required = true;
+  inputRePassword.type = "password";
   inputRePassword.placeholder = "Repeat password";
 
   inputPassword.className = twClasses;
   inputPassword.required = true;
   inputPassword.type = "password";
   inputPassword.placeholder = "********";
+  inputPassword.pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$";
+  inputPassword.title =
+    "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number";
 
   inputReEmail.className = twClasses;
   inputReEmail.required = true;
   inputReEmail.placeholder = "Repeat Email";
 
-  div.appendChild(inputName);
+  div.className = div.appendChild(inputName);
   div.appendChild(inputLastName);
   inputGroup.appendChild(div);
   inputGroup.appendChild(inputEmail);
@@ -154,5 +203,21 @@ const clean = () => {
     inputGroup.firstChild.remove();
   }
 };
+const renderwellcome = (user) => {
+  const labelName = document.createElement("h1");
+  const labelLast = document.createElement("h1");
+  const labelEmail = document.createElement("h1");
+  const btnQuit = document.createElement("button");
+
+  labelName.textContent = user.name;
+  labelLast.textContent = user.lastname;
+  labelEmail.textContent = user.email;
+  btnQuit.textContent = "Logout";
+  btnQuit.addEventListener("click", renderLogin);
+};
+const updateLocalStorange = () => {
+  window.localStorage.setItem("users", JSON.stringify(listUsers));
+};
 isEmpy();
+btn.addEventListener("click", login);
 buttonRegister.addEventListener("click", renderRegister);

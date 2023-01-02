@@ -16,13 +16,16 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
 
+    
     <title>Login Page</title>
   </head>
   <body>
     <main>
       <section>
         <div class="flex h-screen justify-evenly">
-          <div class="shadow-lg wrapper border-2 rounded-lg">
+          <div
+            class="shadow-lg wrapper border-2 rounded-lg flex justify-center"
+          >
             <div class="box-header">
               <img
                 class="img-lore"
@@ -31,21 +34,31 @@
               />
               <p class="text-[0.5rem]">Illustration by Liam Moore</p>
             </div>
-            <div class="box-body">
+            <div class="box-body flex justify-center flex flex-col ...">
               <h1 class="title text-xl font-semibold">Login</h1>
-              <form id="form" action="">
-                <div class="input-group flex-1"  >
+              <form id="form">
+                <div class="input-group flex-1">
                   <input
                     type="email"
-                    class="border-gray-500 mt-1 rounded-[2px] p-1 border-[1.5px]"
+                    class="
+                      border-gray-500
+                      mt-1
+                      rounded-[2px]
+                      p-1
+                      border-[1.5px]
+                    "
                     placeholder="example@example.com"
                     required
                   />
                   <input
                     type="password"
-                    class="border-gray-500 mt-1 p-1 border-[1.5px] rounded-[2px]"
-                    name=""
-                    id=""
+                    class="
+                      border-gray-500
+                      mt-1
+                      p-1
+                      border-[1.5px]
+                      rounded-[2px]
+                    "
                     placeholder="*******"
                     required
                   />
