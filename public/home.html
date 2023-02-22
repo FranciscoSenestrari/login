@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Web site created using create-snowpack-app"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="%PUBLIC_URL%/_dist_/home.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Login Page</title>
+  </head>
+  <body class="body">
+    <main>
+      <header>
+        <nav>
+          <ul class="flex row justify-between shadow-lg">
+            <li class="flex row">
+              <h3>Wellcome:</h3>
+              <h3 class="username">username</h3>
+            </li>
+            <li class="quit-button"> <a class="quit-button" href="/">Quit</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section class="flex justify-center">
+        <div
+          class="
+            canva
+            shadow-lg
+            wrapper
+            border-2
+            rounded-lg
+            flex
+            justify-center
+          "
+        >
+          <picture>
+            <img
+              class="rounded-full border shadow-md"
+              src="https://api.lorem.space/image/face?w=150&h=150"
+              alt="profile picture"
+            />
+          </picture>
+          <h1 class="name">Name</h1>
+          <h2 class="email">email@email.com</h2>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="%PUBLIC_URL%/_dist_/home.js"></script>
+  </body>
+</html>

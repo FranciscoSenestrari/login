@@ -1,10 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebaseConfig";
+import confetti from "canvas-confetti";
 
 const app = initializeApp(firebaseConfig);
 const wrapper = document.querySelector(".wrapper");
 const buttonRegister = document.querySelector(".register");
+const inputEmail = document.createElement("input");
+inputEmail.className = "email";
 const title = document.querySelector(".title");
 const img = document.querySelector(".img-lore");
 const btn = document.querySelector(".btn-LR");
@@ -12,8 +15,6 @@ const regText = document.querySelector(".reg-text");
 const form = document.querySelector("#form");
 const inputGroup = document.querySelector(".input-group");
 const bodyBox = document.querySelector(".box-body");
-
-const inputEmail = document.createElement("input");
 const inputReEmail = document.createElement("input");
 const inputRePassword = document.createElement("input");
 const inputPassword = document.createElement("input");
@@ -21,6 +22,7 @@ const inputName = document.createElement("input");
 const inputLastName = document.createElement("input");
 const div = document.createElement("div");
 const twClasses = "border-gray-500 rounded-[2px] p-1 border-[1.5px] m-1";
+
 let listUsers = [];
 let users = [
   {
@@ -53,7 +55,6 @@ const isEmpy = () => {
   if (!localStorage["users"]) {
     localStorage.setItem("users", JSON.stringify(users));
     listUsers = JSON.parse(localStorage.getItem("users"));
-    console.log(listUsers);
   }
 };
 
@@ -118,24 +119,7 @@ const animate = () => {
     2000
   );
 };
-const login = () => {
-  if (listUsers.find((user) => user.email == inputEmail.value)) {
-    if (
-      listUsers.find(
-        (user) =>
-          user.email == inputEmail.value && user.password == inputPassword.value
-      )
-    ) {
-      let user = listUsers.filter(function (user) {
-        return user.email == inputEmail.value;
-      });
 
-      alert("Wellcome" + user.name);
-      clean();
-      renderwellcome(user);
-    }
-  }
-};
 const register = () => {
   if (inputEmail.value !== inputReEmail.value) {
     inputReEmail.style.borderColor = "red";
@@ -159,7 +143,7 @@ const register = () => {
   renderLogin();
 };
 const createInputs = () => {
-  inputEmail.className = twClasses;
+  inputEmail.className = twClasses + " email";
   inputEmail.required = true;
   inputEmail.placeholder = "example@example.com";
   inputEmail.type = "email";
@@ -182,9 +166,9 @@ const createInputs = () => {
   inputPassword.required = true;
   inputPassword.type = "password";
   inputPassword.placeholder = "********";
-  inputPassword.pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$";
+  inputPassword.pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{6,}$";
   inputPassword.title =
-    "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number";
+    "Minimum six characters, at least one uppercase letter, one lowercase letter and one number";
 
   inputReEmail.className = twClasses;
   inputReEmail.required = true;
@@ -204,26 +188,57 @@ const clean = () => {
   }
 };
 const renderwellcome = (user) => {
-  const labelName = document.createElement("h1");
-  const labelLast = document.createElement("h1");
-  const labelEmail = document.createElement("h1");
-  const btnQuit = document.createElement("button");
-
-  labelName.textContent = user.name;
-  labelLast.textContent = user.lastname;
-  labelEmail.textContent = user.email;
-  btnQuit.textContent = "Logout";
-  
-  inputGroup.appendChild(labelName);
-  inputGroup.appendChild(labelEmail);
-  inputGroup.appendChild(labelLast);
-  inputGroup.appendChild(btnQuit);
-
-  btnQuit.addEventListener("click", renderLogin);
+  /*
+  window.location("%PUBLIC_URL%/home");
+  const username = document.querySelector(".username");
+  const email = document.querySelector("email");
+  const name = document.querySelector("name");
+  name.value = user.name;
+  email.value = user.email;
+  username.value = user.username; 
+  confetti.create(document.querySelector(".canva"), {
+    resize: true,
+    useWorker: true,
+  })({ particleCount: 200, spread: 200 });*/
 };
 const updateLocalStorange = () => {
   window.localStorage.setItem("users", JSON.stringify(listUsers));
 };
+
 isEmpy();
-btn.addEventListener("submit", login);
 buttonRegister.addEventListener("click", renderRegister);
+const login = () => {
+  const email = document.querySelector(".email");
+  const password = document.querySelector(".password");
+  const currentUser = listUsers.find((user) => user.email == email.value);
+  if (
+    currentUser.email != email.value ||
+    currentUser.password != password.value
+  ) {
+    alert("User or password invalid ");
+  } else if (
+    currentUser.email == email.value &&
+    currentUser.password == password.value
+  ) {
+    console.log("hola");
+
+    //window.location("%PUBLIC_URL%/home");
+    // window.location("%PUBLIC_URL%/home.html");
+    //window.location.assign("/home");
+    // window.location.assign("%PUBLIC_URL%/home.html")
+    //window.location.assign('https://developer.mozilla.org/en-US/docs/Web/API/Location/reload');
+    // window.location.replace("%PUBLIC_URL%/home.html")
+    setTimeout(function () {
+
+      document.location.href = "/home";
+    }, 1);
+    console.log("fafa");
+
+    // renderwellcome(currentUser);
+  } else {
+    console.log("por aca pasa");
+  }
+};
+form.onsubmit = () => {
+  login();
+};

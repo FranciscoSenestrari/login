@@ -1,0 +1,58 @@
+:root {
+  --primariColor: #292e49;
+  --secondaryColor: #536976;
+  --textColor: #f1f1f1;
+  --gradient: linear-gradient(
+    to right,
+    var(--primariColor),
+    var(--secondaryColor)
+  );
+  --web-kit-gradient: -webkit-linear-gradient(
+    to right,
+    var(--primariColor),
+    var(--secondaryColor)
+  );
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body{
+    background: var(--gradient);
+    background: var(--web-kit-gradient);
+    background: var(--gradient);  
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36.4vw;
+  height: 80vh;
+  margin-top: 1rem;
+  background-color:var(--textColor) ;
+}
+ul {
+  background: var(--secondaryColor);
+  background: var(--web-kit-gradient);
+  background: var(--gradient);
+}
+li {
+  display: block;
+  height: 3rem;
+  background-color: var(--primariColor);
+  padding: 1rem;
+  color: var(--textColor);
+}
+.quit-button{
+    background: var(--secondaryColor);
+    border: 0.1rem solid var(--primariColor) ;
+}
+.quit-button:hover{
+    background: var(--primariColor);
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+  .wrapper {
+    width: 84vw;
+  }
+}

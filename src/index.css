@@ -17,18 +17,26 @@ form {
 }
 .wrapper {
   flex-direction: column;
-
   align-items: center;
   width: 36.4vw;
   height: 80vh;
   margin-top: 0.5%;
   transition: height 2s, marginTop 2s;
 }
-.btn {
-  color: whitesmoke;
-}
+
 input {
   width: 27.83vw;
   display: block;
 }
+@media  (max-width: 768px){
+  .wrapper{
+    width: 84vw;
 
+  }
+  .img-lore {
+    width: 75vw;
+  }
+  input {
+    width: 72vw;
+  }
+}
