@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebaseConfig";
-import confetti from "canvas-confetti";
 
 const app = initializeApp(firebaseConfig);
 const wrapper = document.querySelector(".wrapper");
@@ -22,7 +21,6 @@ const inputName = document.createElement("input");
 const inputLastName = document.createElement("input");
 const div = document.createElement("div");
 const twClasses = "border-gray-500 rounded-[2px] p-1 border-[1.5px] m-1";
-
 let listUsers = [];
 let users = [
   {
@@ -50,6 +48,7 @@ let users = [
     lastname: "Salas",
   },
 ];
+let logged;
 listUsers = JSON.parse(localStorage.getItem("users"));
 const isEmpy = () => {
   if (!localStorage["users"]) {
@@ -77,6 +76,9 @@ const renderRegister = () => {
 
     div.className = " flex-auto flex-row";
     createInputs();
+    form.onsubmit = () => {
+      register();
+    };
   }, 1000);
 };
 const renderLogin = () => {
@@ -121,26 +123,40 @@ const animate = () => {
 };
 
 const register = () => {
-  if (inputEmail.value !== inputReEmail.value) {
-    inputReEmail.style.borderColor = "red";
-    inputReEmail.title = "Does not match";
+  if (
+    inputName.value != "" ||
+    inputEmail.value != "" ||
+    inputLastName.value != "" ||
+    inputPassword.value != "" ||
+    inputReEmail.value != "" ||
+    inputRePassword.value != ""
+  ) {
+    if (inputEmail.value !== inputReEmail.value) {
+      inputReEmail.style.borderColor = "red";
+      inputReEmail.title = "Does not match";
+    } else if (inputPassword.value !== inputRePassword.value) {
+      inputRePassword.style.borderColor = "red";
+      inputRePassword.title = "Does not match";
+    } else if (
+      inputEmail.value === inputReEmail.value &&
+      inputPassword.value !== inputRePassword.value
+    ) {
+      let user = {
+        userId: Math.random().toString(16).slice(2),
+        username: inputName.value,
+        email: inputEmail.value,
+        password: inputPassword.value,
+        name: inputName.value,
+        lastname: inputLastName.value,
+      };
+      listUsers.push(user);
+      updateLocalStorange();
+      window.alert("create user sussefull");
+      renderLogin();
+    }
+  } else {
+    alert("Fields empy !");
   }
-  if (inputPassword.value !== inputRePassword.value) {
-    inputRePassword.style.borderColor = "red";
-    inputRePassword.title = "Does not match";
-  }
-  let user = {
-    userId: Math.random().toString(16).slice(2),
-    username: inputName.value,
-    email: inputEmail.value,
-    password: inputPassword.value,
-    name: inputName.value,
-    lastname: inputLastName.value,
-  };
-  listUsers.push(user);
-  updateLocalStorange();
-  window.alert("create user sussefull");
-  renderLogin();
 };
 const createInputs = () => {
   inputEmail.className = twClasses + " email";
@@ -187,26 +203,18 @@ const clean = () => {
     inputGroup.firstChild.remove();
   }
 };
-const renderwellcome = (user) => {
-  /*
-  window.location("%PUBLIC_URL%/home");
-  const username = document.querySelector(".username");
-  const email = document.querySelector("email");
-  const name = document.querySelector("name");
-  name.value = user.name;
-  email.value = user.email;
-  username.value = user.username; 
-  confetti.create(document.querySelector(".canva"), {
-    resize: true,
-    useWorker: true,
-  })({ particleCount: 200, spread: 200 });*/
+const renderwellcome = (usr) => {
+  window.sessionStorage.setItem("currentUser", JSON.stringify(usr));
+  setTimeout(function () {
+    document.location.href = "/home";
+  }, 1);
 };
+export {};
 const updateLocalStorange = () => {
   window.localStorage.setItem("users", JSON.stringify(listUsers));
 };
 
 isEmpy();
-buttonRegister.addEventListener("click", renderRegister);
 const login = () => {
   const email = document.querySelector(".email");
   const password = document.querySelector(".password");
@@ -220,25 +228,11 @@ const login = () => {
     currentUser.email == email.value &&
     currentUser.password == password.value
   ) {
-    console.log("hola");
-
-    //window.location("%PUBLIC_URL%/home");
-    // window.location("%PUBLIC_URL%/home.html");
-    //window.location.assign("/home");
-    // window.location.assign("%PUBLIC_URL%/home.html")
-    //window.location.assign('https://developer.mozilla.org/en-US/docs/Web/API/Location/reload');
-    // window.location.replace("%PUBLIC_URL%/home.html")
-    setTimeout(function () {
-
-      document.location.href = "/home";
-    }, 1);
-    console.log("fafa");
-
-    // renderwellcome(currentUser);
+    renderwellcome(currentUser);
   } else {
     console.log("por aca pasa");
   }
 };
-form.onsubmit = () => {
+form.onsubmit = function () {
   login();
 };
